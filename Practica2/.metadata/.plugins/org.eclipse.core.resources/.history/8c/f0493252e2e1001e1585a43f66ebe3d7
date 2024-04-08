@@ -1,0 +1,24 @@
+package Practica2;
+
+public class Hotel extends Alojamiento {
+	private String type;
+	private static int n;
+	public Hotel(String name, String address, double price) {
+		super(name, address, price);
+		this.type = super.types[0];
+		Hotel.n++;
+	}
+	public static int getN() {
+		return Hotel.n;
+	}
+	@Override
+	public String toString() {
+		String str = type+super.toString();
+		return str;
+	}
+	@Override
+	public String getType() {
+		return this.type;
+	}
+
+}

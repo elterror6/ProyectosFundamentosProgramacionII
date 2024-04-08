@@ -1,0 +1,60 @@
+package Practica1;
+import java.util.Scanner;
+
+public class Teatro{
+    private Show[] shows;
+
+    public Teatro() {}
+
+    public Show[] getShows() {
+        return this.shows;
+    }
+
+    public void setShows(Show[] shows) {
+        this.shows = shows;
+    }
+    public int countViewers() {
+        int counter = 0;
+        for (Show show: this.shows) {
+            for (Suscriber suscriber: show.getViewers()) {
+                ++counter;
+            }
+        }
+        return counter;
+    }
+
+    public double averageAge() {
+        int age = 0;
+        double average = 0;
+        for (Show show: this.shows) {
+            for (Suscriber suscriber: show.getViewers()) {
+                age+=suscriber.getAge();
+            }
+        }
+        average = (double)age/(double)this.countViewers();
+        return average;
+    }
+    
+    public void showShows() {
+    	
+    	for (Show show: shows) {
+    		show.showData();
+    	}
+    	
+    }
+    
+    public void menu() {
+    	Scanner sc = new Scanner(System.in);ç
+    	int opt;
+    	System.out.println("MENÚ TEATRO\n----------------------------");
+    	System.out.println("1. -> Añadir Espectaculo.\n2.-> Enseñar espectaculos.\n3.-> Añadir espectador.\n4.-> Estadisticas.\n5.-> Salir.");
+    	System.out.println("----------------------------");
+    	opt = sc.nextInt();
+    	switch(opt) {
+    		case 1:
+    	    	System.out.println("\n----------------------------");
+    			break;
+    	}
+    	
+    }
+}

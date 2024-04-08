@@ -1,0 +1,40 @@
+package Catalogo;
+
+public class Catalogo<E> {
+	private E catalog[];
+	
+	public Catalogo(E[] catalog) {
+		this.catalog = catalog; 
+		
+	}
+	
+	public E[] getCatalog() {
+		return this.catalog;
+	}
+	
+	public E getE(int n) {
+		return this.catalog[n];
+	}
+	
+	public void setCatalog(E[] catalog) {
+		this.catalog = catalog;
+	}
+	
+	public void setE(E e, int n) {
+		this.catalog[n] = e; 
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		boolean eq = false;
+		for (E e: catalog) {
+			if (o == e) {
+				eq = true;
+				break;
+			} else {
+				
+			}
+		}
+		return eq;
+	}
+}

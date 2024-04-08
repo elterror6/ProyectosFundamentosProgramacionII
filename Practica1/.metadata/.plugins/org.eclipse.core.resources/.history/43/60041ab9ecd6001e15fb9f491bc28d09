@@ -1,0 +1,29 @@
+package Practica1;
+
+public class Main {
+
+	public static void main(String[] args) {		
+		Suscriber esp1 = new Suscriber(21,"Pedro",45);
+		Suscriber esp2 = new Suscriber(115,"María",17);
+		Suscriber esp3 = new Suscriber(47,"Alfonso",61);
+		Suscriber esp4 = new Suscriber(63,"Laura",30);
+		Suscriber esp5 = new Suscriber(12,"Juan",12);
+		Suscriber esp6 = new Suscriber(84,"Alba",73);
+		
+		Suscriber[] viewers1 = {esp1,esp2,esp3,esp4};
+		Show show1 = new Show("Mary Poppins", viewers1);
+		Suscriber[] viewers2 = {esp2,esp5,esp6};
+		Show show2 = new Show("Los Miserables", viewers2);
+		
+		Show[] shows = {show1, show2};
+		
+		Teatro teatro = new Teatro();
+		teatro.setShows(shows);
+		teatro.showShows();
+		
+		System.out.printf("En este teatro ha habido un total de %d espectadores, con una edad media de %.1f años.",teatro.countViewers(),teatro.averageAge());
+		
+		
+	}
+
+}

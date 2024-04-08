@@ -1,0 +1,112 @@
+package Practica1;
+import java.util.Scanner;
+
+public class Teatro{
+    private Show[] shows;
+
+    public Teatro() {}
+
+    public Show[] getShows() {
+        return this.shows;
+    }
+
+    public void setShows(Show[] shows) {
+        this.shows = shows;
+    }
+    public int countViewers() {
+        int counter = 0;
+        for (Show show: this.shows) {
+            for (Suscriber suscriber: show.getViewers()) {
+                ++counter;
+            }
+        }
+        return counter;
+    }
+
+    public double averageAge() {
+        int age = 0;
+        double average = 0;
+        for (Show show: this.shows) {
+            for (Suscriber suscriber: show.getViewers()) {
+                age+=suscriber.getAge();
+            }
+        }
+        average = (double)age/(double)this.countViewers();
+        return average;
+    }
+    
+    public void showShows() {
+    	
+    	for (Show show: shows) {
+    		show.showData();
+    	}
+    	
+    }
+    
+    public void menu() {
+    	Scanner sc = new Scanner(System.in);
+    	
+    	int opt;
+    	System.out.println("MENÚ TEATRO\n----------------------------");
+    	System.out.println("1. -> Añadir espectáculo.\n2.-> Enseñar espectáculos.\n3.-> Añadir espectador.\n4.-> Estadisticas.\n5.-> Salir.");
+    	System.out.println("----------------------------");
+    	opt = sc.nextInt();
+    	switch(opt) {
+    		case 1:
+    			String name;
+    			Suscriber[] viewers = {};
+    	    	System.out.println("AÑADIR ESPECTÁCULO\n----------------------------");
+    	    	System.out.println("\tNombre: ");
+    	    	name = sc.next();
+    	    	System.out.println("----------------------------");
+    	    	Show show = new Show(name, viewers);
+    	    	shows[shows.length] = show;
+    	    	break;
+    		case 2:
+    			this.showShows();
+    			break;
+    		case 3:
+    			Show s;
+    			Suscriber suscriber;
+    			Suscriber[] suscribers= {};
+    			int i=1, optshow, age, id;
+    			String susname;
+    			boolean seguir= true;
+    	    	System.out.println("AÑADIR ESPECTADOR\n----------------------------");
+    	    	System.out.println("ESPECTÁCULOS: ");
+    	    	for (Show shw: shows) {
+    	    		System.out.printf("\t%d - %s\n",i++ ,shw.getTitle());
+    	    	}
+    	    	System.out.println("¿Cuál espectaculo es el elegido?");
+    	    	optshow = sc.nextInt();
+    	    	s = shows[optshow-1];
+    	    	System.out.println("ESPECTADORES: ");
+    	    	while (seguir = true) {
+    	        	System.out.println("\tNombre: ");
+    	        	susname = sc.next();
+    	        	System.out.println("\tEdad: ");
+    	        	age = sc.nextInt();
+    	        	System.out.println("\tNúmero de abonado: ");
+    	        	id = sc.nextInt();
+    	        	suscriber = new Suscriber(id,susname,age);
+    	        	suscribers[suscribers.length] = suscriber;
+    	        	System.out.println("¿Desea introducir otro espectador?(y/n)");
+    	        	String yn = sc.next();
+    	        	if (yn == "n") {
+    	        		seguir = false;
+    	        	}
+        	    	System.out.println("----------------------------");
+    	    	}
+    	    	s.setViewers(suscribers);
+    	    	break;
+    		case 4:
+    			System.out.printf("En este teatro ha habido un total de %d espectadores, con una edad media de %.1f años.",this.countViewers(),this.averageAge());
+    			break;
+    		case 5:
+    			break;
+    		default:
+    			System.out.printf("ERR:: La opcion %d no es válida.\n", opt);
+    	}
+    	
+    }
+}

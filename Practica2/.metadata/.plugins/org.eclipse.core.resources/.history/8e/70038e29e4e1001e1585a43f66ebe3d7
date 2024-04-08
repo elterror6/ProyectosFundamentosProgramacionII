@@ -1,0 +1,25 @@
+package Practica2;
+
+public class Apartamento extends Alojamiento {
+	private String type;
+	private static int n;
+	public Apartamento(String name, String address, double price) {
+		super(name, address, price);
+		this.type = super.types[1];
+		Apartamento.n++;
+	}
+	
+	public static int getN() {
+		return Apartamento.n;
+	}
+	@Override
+	public String toString() {
+		String str = type+":\n"+super.toString();
+		return str;
+	}
+	@Override
+	public String getType() {
+		return type;
+	}
+
+}

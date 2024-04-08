@@ -1,0 +1,18 @@
+package Catalogo;
+
+public class Catalogo<E> {
+	private E catalog[];
+	
+	public Catalogo(E[] catalog) {
+		this.catalog = catalog; 
+		
+	}
+	
+	public E[] getCatalog() {
+		return this.catalog;
+	}
+	
+	public void setCatalog(E[] catalog) {
+		this.catalog = catalog;
+	}
+}

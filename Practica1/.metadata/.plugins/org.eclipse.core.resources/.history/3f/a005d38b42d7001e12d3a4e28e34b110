@@ -1,0 +1,86 @@
+package Practica1;
+import java.util.Scanner;
+
+public class Teatro{
+    private Show[] shows;
+
+    public Teatro() { this.shows = new Show[0]; }
+
+    public Show[] getShows() {
+        return this.shows;
+    }
+
+    public void setShows(Show[] shows) {
+        this.shows = shows;
+    }
+    public int countViewers() {
+        int counter = 0;
+        for (Show show: this.shows) {
+            for (Suscriber suscriber: show.getViewers()) {
+                ++counter;
+            }
+        }
+        return counter;
+    }
+
+    public double averageAge() {
+        int age = 0;
+        double average = 0;
+        for (Show show: this.shows) {
+            for (Suscriber suscriber: show.getViewers()) {
+                age+=suscriber.getAge();
+            }
+        }
+        average = (double)age/(double)this.countViewers();
+        return average;
+    }
+    
+    public void showShows() {
+    	
+    	for (Show show: shows) {
+    		show.showData();
+    	}
+    	
+    }
+    
+    public void menu() {
+    	Scanner sc = new Scanner(System.in);
+    	
+    	int opt;
+    	System.out.println("MENÚ TEATRO\n----------------------------");
+    	System.out.println("1. -> Añadir espectáculo.\n2.-> Enseñar espectáculos.\n3.-> Añadir espectador.\n4.-> Estadisticas.\n5.-> Salir.");
+    	System.out.println("----------------------------");
+    	System.out.println("¿Cuál opción desea elegir?(1-5):");
+    	opt = sc.nextInt();
+    	switch(opt) {
+    		case 1:
+    			String name;
+    			Show show;
+    			Show[] copy = shows;
+    			Suscriber[] viewers = {};
+    			System.out.println("AÑADIR ESPECTACULO\n----------------------------");
+    			System.out.print("\tNombre: ");
+    			name = sc.nextLine();
+    			System.out.println("----------------------------");
+    			show = new Show(name,viewers);
+    			this.shows = new Show[copy.length+1];
+    			this.shows = copy;
+    			this.shows[this.shows.length] = show;
+    	    	break;
+    		case 2:
+    			this.showShows();
+    			break;
+    		case 3:
+    			
+    	    	break;
+    		case 4:
+    			System.out.printf("En este teatro ha habido un total de %d espectadores, con una edad media de %.1f años.",this.countViewers(),this.averageAge());
+    			break;
+    		case 5:
+    			break;
+    		default:
+    			System.out.printf("ERR:: La opcion %d no es válida.\n", opt);
+    	}
+    	
+    }
+}

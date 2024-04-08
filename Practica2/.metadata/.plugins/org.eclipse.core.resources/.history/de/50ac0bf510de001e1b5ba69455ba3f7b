@@ -1,0 +1,69 @@
+package Practica2;
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int opt;
+		Alojamiento[] alojamientos = new Alojamiento[7];
+		Alojamiento aloj;
+		
+		aloj = new Hotel("Campanile","Rue Moulin, 32",115);
+		alojamientos[0] = aloj;
+		
+		aloj = new Apartamento("Garderobe","Rue de l'Ouest, 43",88);
+		alojamientos[1] = aloj;
+		
+		aloj = new Hotel("Eiffel","Avenue des Princes, 71",143);
+		alojamientos[2] = aloj;
+		
+		aloj = new Hotel("Chevalier","Rue Oudinot, 59",95);
+		alojamientos[3] = aloj;
+
+		aloj = new Apartamento("Porte de Versailles","Avenue de Javel, 33",120);
+		alojamientos[4] = aloj;
+
+		aloj = new Apartamento("Montrouge","Rue Perier, 128",116);
+		alojamientos[5] = aloj;
+		
+		aloj = new Hotel("Felicien","Avenue Letellier, 87",163);
+		alojamientos[6] = aloj;
+		
+		System.out.println("1.- Hoteles");
+		System.out.println("2.- Apartamentos");
+		System.out.println("3.- Ver todo");
+		System.out.println("4.- Quiero buscar un sitio concreto");
+		
+		opt = sc.nextInt();
+		
+		switch (opt) {
+			case 1:
+				for(Alojamiento alojamiento: alojamientos) {
+					if (alojamiento.getType().equals("HOTEL")) {
+						System.out.println(((Hotel)alojamiento).getType()+":\n\tNombre: "+((Hotel)alojamiento).getName()+"; Dirección: "+((Hotel)alojamiento).getAddress()+"; Precio/noche: "+((Hotel)alojamiento).getPrice());
+					}
+				}
+				break;
+			case 2:
+				for (Alojamiento alojamiento: alojamientos) {
+					if (alojamiento.getType().equals("APARTAMENTO")) {
+						System.out.println(((Apartamento)alojamiento).getType()+":\n\tNombre: "+((Apartamento)alojamiento).getName()+"; Dirección: "+((Apartamento)alojamiento).getAddress()+"; Precio/noche: "+((Apartamento)alojamiento).getPrice());
+					}
+				}
+				break;
+			case 3:
+				for (Alojamiento alojamiento: alojamientos) {
+					System.out.println(alojamiento.getType()+":\n\tNombre: "+alojamiento.getName()+"; Dirección: "+alojamiento.getAddress()+"; Precio/Noche: "+alojamiento.getPrice());
+				}
+				break;
+			case 4:
+				break;
+			default:
+				System.out.println("ERR:: Opción no válida.");
+		}
+		
+	}
+
+}
